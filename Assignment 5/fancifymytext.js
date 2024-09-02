@@ -1,8 +1,10 @@
-function onTextEnter(){         //resets text to default when entering new text
-    if(KeyboardEvent && document.getElementById("textfield").style.fontSize != "10pt")
-        document.getElementById("textfield").style.fontSize = "10pt";
+function onTextEnter(event) { // Accept the event as a parameter
+    const textfield = document.getElementById("textfield");
 
-
+    // Check if the font size is not already "10pt" and reset it
+    if (textfield.style.fontSize != "10pt") {
+        textfield.style.fontSize = "10pt";
+    }
 }
 
 function styleChange(element, lookUp){
@@ -26,7 +28,7 @@ function onClick(id){
     const lookUp = {"FancyShmancy":["blue","bold", "underline"], "BoringBetty":["black","normal","none"]};
     const textfield = document.getElementById("textfield");
 
-    //Ensure this is not a default value and the entry exists in the dictionary
+    //Ensure the entry exists in the dictionary
     if((elem = lookUp[id])!=null){     
         //Disable all the other radio buttons
         for(radioID in lookUp)
