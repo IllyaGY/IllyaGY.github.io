@@ -24,7 +24,6 @@ function changeText(text){
 
 function onClick(id = ""){
     const lookUp = {"FancyShmancy":["blue","bold", "underline"], "BoringBetty":["black","normal","none"]};
-    button = "bigger "; 
     const textfield = document.getElementById("textfield");
 
     //Ensure this is not a default value and the entry exists in the dictionary
@@ -34,17 +33,15 @@ function onClick(id = ""){
             if(radioID != id)document.getElementById(radioID).checked = false; 
     
         styleChange(textfield, elem);
-        button = id;
     }
-    else if(id == ""){
-        textfield.style.fontSize = "24pt";
+    else {
+        if(id == "")
+            textfield.style.fontSize = "24pt";
+        else{
+            textfield.value = changeText(textfield.value);
+        }
     }
-    else{
-        textfield.value = changeText(textfield.value);
-
-    }
-
-    alert("You've pressed the " + button + " button");  
+    alert("You've pressed the " + id + " button");  
 }
     
      
