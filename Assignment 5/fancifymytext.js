@@ -22,7 +22,7 @@ function changeText(text){
 
 }
 
-function onClick(id = ""){
+function onClick(id){
     const lookUp = {"FancyShmancy":["blue","bold", "underline"], "BoringBetty":["black","normal","none"]};
     const textfield = document.getElementById("textfield");
 
@@ -35,7 +35,7 @@ function onClick(id = ""){
         styleChange(textfield, elem);
     }
     else {
-        if(id == "")
+        if(id == "Bigger")
             textfield.style.fontSize = "24pt";
         else{
             textfield.value = changeText(textfield.value);
