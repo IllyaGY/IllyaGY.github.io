@@ -6,13 +6,15 @@ function onTextEnter(event) { // Accept the event as a parameter
         textfield.style.fontSize = "10pt";
     }
 }
-
+//Changes the styles if any of the radio button is pressed
 function styleChange(element, lookUp){
     element.style.color = lookUp[0];
     element.style.fontWeight = lookUp[1];
     element.style.textDecoration = lookUp[2];
 }
 
+
+//Edits text when Moo is pressed
 function changeText(text){
     text = text.toUpperCase();
     splitText =text.split("."); 
@@ -37,8 +39,11 @@ function onClick(id){
         styleChange(textfield, elem);
     }
     else {
+
+        //If Bigger is pressed
         if(id == "Bigger")
             textfield.style.fontSize = "24pt";
+        //If Moo is pressed
         else{
             textfield.value = changeText(textfield.value);
         }
