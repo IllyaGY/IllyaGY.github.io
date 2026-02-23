@@ -1,27 +1,319 @@
-<!doctype html>
-<html lang="en-US">
-  <head>
-    <meta charset="utf-8" />
-    <title>Illya Gordyy</title>
-  </head>
-  <body>
-    <div class="main-logo" style = "object-fit:cover; padding: 0%; background-color: #CECECE; "> 
-    <h1 align="center">Illya Gordyy</h1>
-    <div>
-      <li><a href="#Main">Main</a></li>
-      <li><a href="#Projects">Projects</a></li>
-      <li><a href="#About">About</a></li>
-      <li><a href="#Contacts">Contacts</a></li>
-      <form>
-        <input type="text" placeholder="Search">
-        <input type="submit" value="Go">
-      </form>
-    </div>
-      <br> <h2 align="center"><strong><a href="index.html">Welcome to my Main Page</a></strong></h2><br/>
-      <p align="center" style="padding-bottom: 5%;">Here is my test page where I will include some interesting facts about me and some projects that I have 
-        done during college </p>
-    </div>
-      <div align = "center"><img src="img.jpg" alt=""></div>
-      <div style = "position: absolute; bottom: 0%;">©Copyright 2050 by Illya. All rights reversed.</div>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Illya Gordyy | Portfolio</title>
+    <style>
+        /* CSS Styles & Animations */
+        :root {
+            --bg-color: #0d1117;
+            --text-main: #c9d1d9;
+            --text-muted: #8b949e;
+            --accent: #58a6ff;
+            --accent-glow: rgba(88, 166, 255, 0.4);
+            --card-bg: #161b22;
+            --border-color: #30363d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(13, 17, 23, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            background: radial-gradient(circle at center, #1f2937 0%, var(--bg-color) 70%);
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: slideDown 1s ease-out;
+        }
+
+        .highlight {
+            color: var(--accent);
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            animation: fadeIn 1.5s ease-in;
+            max-width: 800px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            animation: slideUp 1s ease-out;
+        }
+
+        .btn:hover {
+            background: var(--accent);
+            color: var(--bg-color);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        /* Grid Layouts */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .card.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            border-color: var(--accent);
+        }
+
+        .card h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(88, 166, 255, 0.1);
+            color: var(--accent);
+            padding: 0.2rem 0.6rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            margin: 0.2rem;
+            border: 1px solid var(--accent-glow);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 3rem;
+            color: var(--text-muted);
+        }
+
+        /* Animations */
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div style="font-weight: bold; font-size: 1.2rem; color: var(--accent);">IG</div>
+        <div>
+            <a href="#about">About</a>
+            <a href="#research">Research</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+        </div>
+    </nav>
+
+    <header id="home">
+        <h1>Hi, I'm <span class="highlight">Illya Gordyy</span></h1>
+        <p class="subtitle">CyberCorps Scholar specializing in System Security, AI/Deep Learning, and Low-Level OS Programming.</p>
+        <a href="https://github.com/IllyaGY" target="_blank" class="btn">View My GitHub</a>
+    </header>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="card visible">
+            <p>I am a Computer Science student at California State University, Sacramento, with a minor in Applied Mathematics. I maintain a 3.736 GPA and am expected to graduate in May 2026. As a <strong>CyberCorps: Scholarship for Service (SFS) Scholar</strong>, I am dedicated to safeguarding systems and advancing the intersection of cybersecurity and artificial intelligence.</p>
+        </div>
+    </section>
+
+    <section id="research">
+        <h2>Research & Publications</h2>
+        <div class="card">
+            <h3>NSF REU UnCoRe 2025: Cybersecurity & AI</h3>
+            <p><strong>Paper:</strong> <em>"Can a Large Language Model Win a Kaggle Competition?"</em> (IEEE ICDM A* Symposium 2025)</p>
+            <p>Researched the capabilities of LLMs like GPT-4o-mini and DeepSeek-R1 in autonomously building deep learning solutions. Designed <strong>CompeteRAG</strong>, a retrieval-augmented generation framework that uses similarity search on high-quality Jupyter notebooks to construct Keras models and optimize them via Keras Tuner. Evaluated the framework's efficacy against state-of-the-art baselines and top human Kaggle performers.</p>
+            <div style="margin-top: 1rem;">
+                <span class="tag">LLMs</span>
+                <span class="tag">RAG</span>
+                <span class="tag">TensorFlow/Keras</span>
+                <span class="tag">FAISS</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Featured Projects</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Custom Operating System</h3>
+                <p>Implemented a custom OS kernel featuring round-robin scheduling, concurrency locks, and interrupt handling. Secured memory allocation and tested interrupt routines against unauthorized privilege escalation and buffer overflows.</p>
+                <div style="margin-top: 1rem;">
+                    <span class="tag">C</span>
+                    <span class="tag">x86 Assembly</span>
+                    <span class="tag">GDB</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Modern Intrusion Detection Model</h3>
+                <p>Trained CNN and FCNN deep learning models to detect malicious network behavior using the UNSW-NB15 dataset, achieving a 97% F1-score. Engineered feature pipelines and designed the architecture to act as a foundation for NID systems.</p>
+                <div style="margin-top: 1rem;">
+                    <span class="tag">Python</span>
+                    <span class="tag">TensorFlow</span>
+                    <span class="tag">Keras</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>AiRise: Generative AI Fitness App</h3>
+                <p>Collaborated on a mobile fitness application published on the Apple App Store. Integrated Google's Gemini API with multimodal image input to provide highly personalized workout recommendations.</p>
+                <div style="margin-top: 1rem;">
+                    <span class="tag">Kotlin</span>
+                    <span class="tag">Gemini API</span>
+                    <span class="tag">MongoDB</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>2D Chess Engine</h3>
+                <p>Developed an object-oriented, modular chess engine focused on algorithmic efficiency. Precomputed movement data and optimized algorithms for fast move generation.</p>
+                <div style="margin-top: 1rem;">
+                    <span class="tag">C++</span>
+                    <span class="tag">SFML</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Technical Arsenal</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Languages & Frameworks</h3>
+                <p>C, C++, x86 Assembly (Intel & AT&T), Python, TensorFlow, Keras, Java, SQL, JavaScript, HTML/CSS.</p>
+            </div>
+            <div class="card">
+                <h3>Security & Tools</h3>
+                <p>Wireshark, IDA Pro, Ghidra, Volatility, Splunk, Metasploit, GDB, Linux, Git.</p>
+            </div>
+            <div class="card">
+                <h3>Certifications</h3>
+                <p>CompTIA Security+ (Achieved Jan 2025).</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Connect with me at <a href="mailto:igordstudy12@gmail.com" style="color: var(--accent); text-decoration: none;">igordstudy12@gmail.com</a></p>
+        <p>&copy; 2025 Illya Gordyy. Built for GitHub Pages.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const cards = document.querySelectorAll(".card");
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            cards.forEach(card => observer.observe(card));
+        });
+    </script>
+</body>
 </html>
