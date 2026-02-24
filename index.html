@@ -21,6 +21,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
@@ -100,12 +101,19 @@
             font-weight: bold;
             transition: all 0.3s ease;
             animation: slideUp 1s ease-out;
+            margin: 0.5rem;
         }
 
         .btn:hover {
             background: var(--accent);
             color: var(--bg-color);
             box-shadow: 0 0 15px var(--accent-glow);
+        }
+        
+        .btn-small {
+            padding: 0.4rem 1rem;
+            font-size: 0.9rem;
+            margin-top: 1rem;
         }
 
         /* Sections */
@@ -121,6 +129,13 @@
             border-bottom: 2px solid var(--border-color);
             padding-bottom: 0.5rem;
             display: inline-block;
+        }
+        
+        h3.category-title {
+            font-size: 1.8rem;
+            color: var(--text-main);
+            margin: 2rem 0 1rem 0;
+            opacity: 0.9;
         }
 
         /* Grid Layouts */
@@ -139,6 +154,9 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             opacity: 0;
             transform: translateY(20px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .card.visible {
@@ -165,8 +183,24 @@
             padding: 0.2rem 0.6rem;
             border-radius: 15px;
             font-size: 0.85rem;
-            margin: 0.2rem;
+            margin: 0.2rem 0.2rem 0.2rem 0;
             border: 1px solid var(--accent-glow);
+        }
+        
+        .tags-container {
+            margin-top: 1rem;
+        }
+
+        ul.competition-list {
+            list-style-type: none;
+        }
+
+        ul.competition-list li {
+            background: var(--card-bg);
+            border-left: 4px solid var(--accent);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0 8px 8px 0;
         }
 
         /* Footer */
@@ -200,21 +234,24 @@
         <div>
             <a href="#about">About</a>
             <a href="#research">Research</a>
-            <a href="#projects">Projects</a>
-            <a href="#skills">Skills</a>
+            <a href="#ai-projects">AI Models</a>
+            <a href="#projects">Software & Security</a>
+            <a href="#competitions">Competitions</a>
         </div>
     </nav>
 
     <header id="home">
         <h1>Hi, I'm <span class="highlight">Illya Gordyy</span></h1>
-        <p class="subtitle">CyberCorps Scholar specializing in System Security, AI/Deep Learning, and Low-Level OS Programming.</p>
-        <a href="https://github.com/IllyaGY" target="_blank" class="btn">View My GitHub</a>
+        [cite_start]<p class="subtitle">Driven Computer Science Student Specializing in Artificial Intelligence, Deep Learning, and System Security[cite: 649].</p>
+        <div>
+            <a href="https://github.com/IllyaGY" target="_blank" class="btn">View My GitHub</a>
+        </div>
     </header>
 
     <section id="about">
         <h2>About Me</h2>
         <div class="card visible">
-            <p>I am a Computer Science student at California State University, Sacramento, with a minor in Applied Mathematics. I maintain a 3.736 GPA and am expected to graduate in May 2026. As a <strong>CyberCorps: Scholarship for Service (SFS) Scholar</strong>, I am dedicated to safeguarding systems and advancing the intersection of cybersecurity and artificial intelligence.</p>
+            [cite_start]<p>I am a Computer Science student at California State University, Sacramento, with a minor in Applied Mathematics[cite: 590, 591]. [cite_start]I maintain a 3.736 GPA and expect to graduate in May 2026[cite: 593]. [cite_start]As a <strong>CyberCorps: Scholarship for Service (SFS) Scholar</strong>[cite: 632], I am dedicated to safeguarding systems and developing advanced machine learning models.</p>
         </div>
     </section>
 
@@ -222,9 +259,12 @@
         <h2>Research & Publications</h2>
         <div class="card">
             <h3>NSF REU UnCoRe 2025: Cybersecurity & AI</h3>
-            <p><strong>Paper:</strong> <em>"Can a Large Language Model Win a Kaggle Competition?"</em> (IEEE ICDM A* Symposium 2025)</p>
-            <p>Researched the capabilities of LLMs like GPT-4o-mini and DeepSeek-R1 in autonomously building deep learning solutions. Designed <strong>CompeteRAG</strong>, a retrieval-augmented generation framework that uses similarity search on high-quality Jupyter notebooks to construct Keras models and optimize them via Keras Tuner. Evaluated the framework's efficacy against state-of-the-art baselines and top human Kaggle performers.</p>
-            <div style="margin-top: 1rem;">
+            [cite_start]<p><strong>Paper Presentation:</strong> <em>"Can a Large Language Model Win a Kaggle Competition?"</em> (2025 REU Symposium on Data Science, Systems, and Security at IEEE ICDM (A*))[cite: 646].</p>
+            [cite_start]<p>Researched ChatGPT-04-mini and Deepseek-R1's ability to build and optimize deep-learning models to win Kaggle competitions[cite: 649]. [cite_start]Designed and created <strong>CompeteRAG</strong>, a retrieval-augmented generation framework that solves new competitions via LLM analysis[cite: 649]. [cite_start]Implemented a FAISS index over DiffCSE embeddings to retrieve analogous Kaggle competitions and their core solutions pipelines[cite: 649].</p>
+            
+            <a href="https://github.com/Laboratory-software-Innovation/CompeteRAG" target="_blank" class="btn btn-small">View CompeteRAG on GitHub</a>
+
+            <div class="tags-container">
                 <span class="tag">LLMs</span>
                 <span class="tag">RAG</span>
                 <span class="tag">TensorFlow/Keras</span>
@@ -233,48 +273,107 @@
         </div>
     </section>
 
-    <section id="projects">
-        <h2>Featured Projects</h2>
+    <section id="ai-projects">
+        <h2>AI & Deep Learning Models</h2>
         <div class="grid">
             <div class="card">
+                <h3>Emotion Detection in Text Using NLP</h3>
+                [cite_start]<p>Built a custom text-processing pipeline including cleaning, tokenization, vocabulary creation, and sequence encoding[cite: 649]. [cite_start]Trained a bidirectional LSTM model with and without GloVe embeddings to enhance semantic representation, achieving over 90% accuracy in multiclass emotion detection[cite: 649].</p>
+                <div class="tags-container">
+                    <span class="tag">Python</span>
+                    <span class="tag">TensorFlow</span>
+                    <span class="tag">Keras</span>
+                    <span class="tag">Bi-LSTM</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>House Price Estimation (Multimodal)</h3>
+                [cite_start]<p>Combined visual features from four house images and textual metadata via the TensorFlow Functional API[cite: 649]. [cite_start]Removed outliers, encoded categorical fields, normalized inputs, and trained an end-to-end regression model[cite: 649].</p>
+                <div class="tags-container">
+                    <span class="tag">TensorFlow Functional API</span>
+                    <span class="tag">Regression</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Modern Intrusion Detection</h3>
+                [cite_start]<p>Engineered feature pipelines from UNSW-NB15 traffic data, handling categorical encoding and normalization[cite: 649]. [cite_start]Developed FCNN and CNN classifiers with EarlyStopping/Model Checkpoint, achieving a 97% F1-score for intrusion detection[cite: 649].</p>
+                <div class="tags-container">
+                    <span class="tag">Python</span>
+                    <span class="tag">TensorFlow</span>
+                    <span class="tag">Keras</span>
+                    <span class="tag">CNN / FCNN</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Stock Price Forecasting</h3>
+                [cite_start]<p>Framed time series as 7x5 input sequences to predict next-day Close prices[cite: 649]. [cite_start]Compared FCNN, 1D-CNN, and LSTM architectures, reporting best RMSE per model and visualizing predictions with regression lift charts[cite: 649].</p>
+                <div class="tags-container">
+                    <span class="tag">TensorFlow</span>
+                    <span class="tag">Keras</span>
+                    <span class="tag">Time Series</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Yelp Rating Prediction</h3>
+                [cite_start]<p>Preprocessed large text datasets with tokenization, padding, and embedding layers[cite: 649]. [cite_start]Built and tuned an FCNN to classify ratings from 1-5, achieving 85% test accuracy while experimenting with dropout and batch normalization[cite: 649].</p>
+                <div class="tags-container">
+                    <span class="tag">Python</span>
+                    <span class="tag">TensorFlow</span>
+                    <span class="tag">NLP</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Software & Security Projects</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Website with RBAC & 2FA</h3>
+                [cite_start]<p>Integrated role-based access control to mitigate privilege escalation attacks and block suspicious users[cite: 625]. [cite_start]Implemented secure user account management with SHA-256 encrypted storage and two-factor authentication via phone code[cite: 626].</p>
+                <div class="tags-container">
+                    <span class="tag">Python</span>
+                    <span class="tag">Flask</span>
+                    <span class="tag">SQLite</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Python TCP Chat Application</h3>
+                [cite_start]<p>Created a secure socket-based connection for 10 users, using basic encryption to protect message integrity[cite: 566]. [cite_start]Deployed authentication checks to restrict unauthorized access, ensuring only valid users could join the chat[cite: 567].</p>
+                <div class="tags-container">
+                    <span class="tag">Python</span>
+                    <span class="tag">Socket Programming</span>
+                    <span class="tag">Networking</span>
+                </div>
+            </div>
+            
+            <div class="card">
                 <h3>Custom Operating System</h3>
-                <p>Implemented a custom OS kernel featuring round-robin scheduling, concurrency locks, and interrupt handling. Secured memory allocation and tested interrupt routines against unauthorized privilege escalation and buffer overflows.</p>
-                <div style="margin-top: 1rem;">
+                [cite_start]<p>Implemented a custom OS kernel featuring round-robin scheduling, concurrency locks, and interrupt handling[cite: 552]. [cite_start]Secured interrupt routines against unauthorized escalation by testing for buffer overflows and invalid memory access[cite: 553].</p>
+                <div class="tags-container">
                     <span class="tag">C</span>
                     <span class="tag">x86 Assembly</span>
                     <span class="tag">GDB</span>
                 </div>
             </div>
-
-            <div class="card">
-                <h3>Modern Intrusion Detection Model</h3>
-                <p>Trained CNN and FCNN deep learning models to detect malicious network behavior using the UNSW-NB15 dataset, achieving a 97% F1-score. Engineered feature pipelines and designed the architecture to act as a foundation for NID systems.</p>
-                <div style="margin-top: 1rem;">
-                    <span class="tag">Python</span>
-                    <span class="tag">TensorFlow</span>
-                    <span class="tag">Keras</span>
-                </div>
-            </div>
-
-            <div class="card">
-                <h3>AiRise: Generative AI Fitness App</h3>
-                <p>Collaborated on a mobile fitness application published on the Apple App Store. Integrated Google's Gemini API with multimodal image input to provide highly personalized workout recommendations.</p>
-                <div style="margin-top: 1rem;">
-                    <span class="tag">Kotlin</span>
-                    <span class="tag">Gemini API</span>
-                    <span class="tag">MongoDB</span>
-                </div>
-            </div>
-
-            <div class="card">
-                <h3>2D Chess Engine</h3>
-                <p>Developed an object-oriented, modular chess engine focused on algorithmic efficiency. Precomputed movement data and optimized algorithms for fast move generation.</p>
-                <div style="margin-top: 1rem;">
-                    <span class="tag">C++</span>
-                    <span class="tag">SFML</span>
-                </div>
-            </div>
         </div>
+    </section>
+
+    <section id="competitions">
+        <h2>Competitions & Hackathons</h2>
+        <ul class="competition-list card visible" style="padding: 2rem;">
+            [cite_start]<li><strong>NCL 2025:</strong> Scored 2110 points in the Team Game[cite: 653].</li>
+            [cite_start]<li><strong>AI Hackathon:</strong> Designed an AI model to categorize guests as friendly, unknown, or threats[cite: 654].</li>
+            [cite_start]<li><strong>NCAE Cyber Games:</strong> Placed 7th as a Blue Team member securing critical infrastructure[cite: 655].</li>
+            [cite_start]<li><strong>WRCCDC:</strong> Gained hands-on experience in Blue Teaming operations[cite: 656].</li>
+            [cite_start]<li><strong>HPE Code Wars 2020:</strong> Placed second among 250 teams in the regional HP Code Wars competition[cite: 651].</li>
+            [cite_start]<li><strong>HPE Code Wars 2021:</strong> Participated and gained experience in problem solving and teamwork[cite: 652].</li>
+        </ul>
     </section>
 
     <section id="skills">
@@ -282,21 +381,21 @@
         <div class="grid">
             <div class="card">
                 <h3>Languages & Frameworks</h3>
-                <p>C, C++, x86 Assembly (Intel & AT&T), Python, TensorFlow, Keras, Java, SQL, JavaScript, HTML/CSS.</p>
+                [cite_start]<p>C, C++, x86 Assembly (Intel & AT&T), Python (TensorFlow), Java, HTML/CSS, SQL, JavaScript[cite: 649].</p>
             </div>
             <div class="card">
                 <h3>Security & Tools</h3>
-                <p>Wireshark, IDA Pro, Ghidra, Volatility, Splunk, Metasploit, GDB, Linux, Git.</p>
+                [cite_start]<p>Wireshark, IDA Pro, Ghidra, Tshark, Volatility, Splunk, OpenCTI, Metasploit, GDB, VS, Linux, Windows, GitHub, Vim[cite: 649].</p>
             </div>
             <div class="card">
                 <h3>Certifications</h3>
-                <p>CompTIA Security+ (Achieved Jan 2025).</p>
+                [cite_start]<p>CompTIA Security+ (01/16/2025)[cite: 649].</p>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>Connect with me at <a href="mailto:igordstudy12@gmail.com" style="color: var(--accent); text-decoration: none;">igordstudy12@gmail.com</a></p>
+        [cite_start]<p>Connect with me at <a href="mailto:igordstudy12@gmail.com" style="color: var(--accent); text-decoration: none;">igordstudy12@gmail.com</a> [cite: 649]</p>
         <p>&copy; 2025 Illya Gordyy. Built for GitHub Pages.</p>
     </footer>
 
